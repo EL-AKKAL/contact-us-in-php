@@ -1,25 +1,38 @@
 <?php
+// declaring the variables
   $name = htmlspecialchars($_POST['name']);
   $email = htmlspecialchars($_POST['email']);
   $phone = htmlspecialchars($_POST['phone']);
-  $website = htmlspecialchars($_POST['website']);
+  $subject = htmlspecialchars($_POST['subject']);
   $message = htmlspecialchars($_POST['message']);
 
-  if(!empty($email) && !empty($message)){
+// check if the fields are not empty
+  if(!empty($name) && !empty($email) && !empty($phone) && !empty($subject) && !empty($message)){
+
+// check if the email is valid
     if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-      $receiver = "akkalayoub3@gmail.com"; //enter that email address where you want to receive all messages
-      $subject = "From: $name <$email>";
-      $body = "Name: $name\nEmail: $email\nPhone: $phone\nWebsite: $website\n\nMessage:\n$message\n\nRegards,\n$name";
+
+// check if the phone is numeric
+    if (is_numeric($phone)) {
+
+// preparing the message 
+      $to = "akkalayoub3@gmail.com"; //enter that email address where you want to receive all messages
+      $body = "Name: $name\n\rEmail: $email\n\rPhone: $phone\n\rSubject: $subject\n\rMessage:\n\r$message\n\rRegards,\n\r$name";
       $sender = "From: $email";
-      if(mail($receiver, $subject, $body, $sender)){
+
+// sending the message
+      if(mail($to, $subject, $body, $sender)){
          echo "Your message has been sent";
-      }else{
+      }else{ //else the message hasnt send
          echo "Sorry, failed to send your message!";
       }
     }else{
-      echo "Enter a valid email address!";
+      echo "Please enter a valid phone number";
     }
-  }else{
-    echo "Email and message field is required!";
+    }else{ //else the email is not valid
+      echo "Please enter a valid email address!";
+    }
+  }else{ //else one of the fields is empty
+    echo "All the fields are required!";
   }
 ?>
