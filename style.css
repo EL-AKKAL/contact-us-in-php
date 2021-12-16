@@ -10,13 +10,13 @@ body{
   display: flex;
   padding: 0 10px;
   min-height: 100vh;
-  background: #0D6EFD;
+  background: black;
   align-items: center;
   justify-content: center;
 }
 ::selection{
   color: #fff;
-  background: #0D6EFD;
+  background: black;
 }
 .wrapper{
   width: 715px;
@@ -74,11 +74,11 @@ form .message textarea{
 .field input:focus,
 .message textarea:focus{
   padding-left: 47px;
-  border: 2px solid #0D6EFD;
+  border: 2px solid black;
 }
 .field input:focus ~ i,
 .message textarea:focus ~ i{
-  color: #0D6EFD;
+  color: black;
 }
 form .message{
   position: relative;
@@ -113,11 +113,12 @@ form .button-area{
   cursor: pointer;
   border-radius: 5px;
   padding: 13px 25px;
-  background: #0D6EFD;
-  transition: background 0.3s ease;
+  background: black;
+  transition:  0.3s ease;
+  transition-property: padding;
 }
 .button-area button:hover{
-  background: #025ce3;
+  padding-left: 35px;
 }
 .button-area span{
   font-size: 17px;
